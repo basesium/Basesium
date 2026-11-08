@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BASESIUM // Base to Elysium Whitelist Access</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        elysium: {
+                            blue: '#0052ff',
+                            cyan: '#00f0ff',
+                            purple: '#8a2be2',
+                            dark: '#070913',
+                            card: '#0e1322'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #070913;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Glow background elements */
+        .bg-glow-top {
+            position: absolute;
+            top: -15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.25) 0%, rgba(138, 43, 226, 0.15) 40%, rgba(7, 9, 19, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-glow-bottom {
+            position: absolute;
+            bottom: -10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, rgba(7, 9, 19, 0) 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(14, 19, 34, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .neon-input {
+            background: rgba(7, 9, 19, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .neon-input:focus {
+            outline: none;
+            border-color: #00f0ff;
+            box-shadow: 0 0 18px rgba(0, 240, 255, 0.25);
+        }
+
+        .grid-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070913;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052ff;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative flex flex-col justify-between grid-pattern">
+
+    <!-- Ambient Glowing Backdrops -->
+    <div class="bg-glow-top"></div>
+    <div class="bg-glow-bottom"></div>
+
+    <!-- Header Navigation -->
+    <header class="relative z-10 w-full border-b border-white/5 bg-elysium-dark/70 backdrop-blur-md">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand & Logo Image -->
+            <div class="flex items-center space-x-3">
+                <img 
+                    src="https://i.imgur.com/bDjxskg.jpeg" 
+                    alt="BASESIUM Logo" 
+                    class="w-11 h-11 rounded-full object-cover border-2 border-elysium-cyan/50 shadow-lg shadow-elysium-cyan/20"
+                    onerror="this.src='https://placehold.co/100x100/0052ff/ffffff?text=BSM'"
+                >
+                <div class="flex flex-col">
+                    <span class="font-mono text-xl font-extrabold tracking-wider text-white">BASESIUM</span>
+                    <span class="text-[10px] font-mono text-elysium-cyan tracking-widest uppercase">Base &rarr; Elysium Network</span>
+                </div>
+            </div>
+
+            <!-- Network Badges -->
+            <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+                    <span>BASE: LIVE</span>
+                </div>
+                <div class="flex items-center space-x-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
+                    <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                    <span>ELYSIUM: WHITELIST OPEN</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="relative z-10 my-auto py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full">
+
+        <!-- Project Hero Card / Image Showcase -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 mb-8 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-elysium-cyan to-purple-600"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+                <!-- Hero Image -->
+                <div class="relative group shrink-0 mx-auto md:mx-0">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-elysium-blue to-purple-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                    <img 
+                        src="https://i.imgur.com/bDjxskg.jpeg" 
+                        alt="BASESIUM Main Concept" 
+                        class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-2xl object-cover border border-white/20 shadow-2xl"
+                        onerror="this.src='https://placehold.co/400x400/0e1322/00f0ff?text=BASESIUM'"
+                    >
+                </div>
+
+                <!-- Hero Information -->
+                <div class="space-y-3">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono">
+                        <i class="fa-solid fa-bridge text-elysium-cyan"></i>
+                        <span>CROSS-NETWORK WHITELIST</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white font-mono">
+                        BASESIUM <span class="text-transparent bg-clip-text bg-gradient-to-r from-elysium-cyan to-purple-400">CROSS-CHAIN</span> AIRDROP
+                    </h1>
+                    <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-xl">
+                        Users who purchase or hold <span class="text-blue-400 font-semibold font-mono">BASESIUM on the Base Network</span> will be allocated corresponding <span class="text-purple-400 font-semibold font-mono">BASESIUM on the Elysium Network</span>. Submit your EVM wallet below to lock in your spot.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 pt-1 text-xs font-mono">
+                        <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                            <i class="fa-solid fa-circle-check text-emerald-400 mr-1"></i>Base Token: LIVE
+                        </span>
+                        <span class="px-2.5 py-1 rounded bg-slate-900 border border-slate-700 text-slate-300">
+                            <i class="fa-solid fa-hourglass-half text-amber-400 mr-1"></i>Elysium Token: Pending Whitelist
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Whitelist Registration Form -->
+        <div class="glass-card rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+            <h2 class="text-xl font-bold font-mono text-white mb-2 flex items-center space-x-2">
+                <i class="fa-solid fa-user-plus text-elysium-cyan"></i>
+                <span>Register Wallet Address</span>
+            </h2>
+            <p class="text-slate-400 text-xs font-mono mb-6">Enter your EVM wallet address to claim eligibility for Elysium allocation.</p>
+
+            <form id="whitelistForm" action="https://formspree.io/f/jeeecapullet@gmail.com" method="POST" class="space-y-5">
+                <!-- Hidden recipient / subject helpers -->
+                <input type="hidden" name="_subject" value="New BASESIUM Whitelist Submission!">
+                <input type="hidden" name="_to" value="jeeecapullet@gmail.com">
+
+                <!-- Wallet Address (Required) -->
+                <div>
+                    <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                        EVM Wallet Address <span class="text-elysium-cyan">*</span>
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                            <i class="fa-brands fa-ethereum text-lg"></i>
+                        </div>
+                        <input 
+                            type="text" 
+                            id="walletAddress" 
+                            name="walletAddress"
+                            required 
+                            placeholder="0x..." 
+                            class="w-full pl-11 pr-10 py-3.5 rounded-xl neon-input font-mono text-sm text-white placeholder-slate-600"
+                        >
+                        <div id="validationIcon" class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none hidden"></div>
+                    </div>
+                    <p id="walletError" class="mt-1.5 text-xs text-rose-400 font-mono hidden">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Valid EVM address required (starts with 0x and 42 characters).
+                    </p>
+                </div>
+
+                <!-- Social Handles (Optional) -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                            Discord Username <span class="text-slate-500">(Optional)</span>
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                                <i class="fa-brands fa-discord"></i>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="discordHandle" 
+                                name="discordHandle"
+                                placeholder="username" 
+                                class="w-full pl-11 py-3.5 rounded-xl neon-input font-mono text-sm text-white placeholder-slate-600"
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                            Twitter / X Handle <span class="text-slate-500">(Optional)</span>
+                        </label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-500">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </div>
+                            <input 
+                                type="text" 
+                                id="twitterHandle" 
+                                name="twitterHandle"
+                                placeholder="@username" 
+                                class="w-full pl-11 py-3.5 rounded-xl neon-input font-mono text-sm text-white placeholder-slate-600"
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Terms Confirmation -->
+                <div class="flex items-start space-x-3 pt-2">
+                    <input 
+                        type="checkbox" 
+                        id="termsCheck" 
+                        required 
+                        class="mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-elysium-blue focus:ring-elysium-blue focus:ring-offset-slate-900"
+                    >
+                    <label for="termsCheck" class="text-xs text-slate-400 leading-relaxed cursor-pointer select-none">
+                        I confirm holding/buying BASESIUM on Base Network and agree to receive Elysium distribution updates.
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <button 
+                    type="submit" 
+                    id="submitBtn" 
+                    class="w-full py-4 px-6 rounded-xl font-mono font-bold text-sm tracking-wider uppercase bg-gradient-to-r from-elysium-blue via-elysium-cyan to-purple-600 text-white hover:opacity-95 transition-all shadow-lg shadow-elysium-blue/25 hover:shadow-elysium-cyan/40 flex items-center justify-center space-x-2 group cursor-pointer disabled:opacity-50"
+                >
+                    <span id="btnText">SUBMIT WALLET FOR ELYSIUM WHITELIST</span>
+                    <i id="btnIcon" class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+                </button>
+            </form>
+
+            <!-- Success Card -->
+            <div id="successCard" class="hidden mt-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-center space-y-2">
+                <div class="w-10 h-10 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h4 class="font-mono font-bold text-base">WALLET REGISTERED SUCCESSFULLY!</h4>
+                <p class="text-xs text-emerald-300/80">Your wallet address has been submitted and forwarded directly to the BASESIUM team.</p>
+            </div>
+        </div>
+
+        <!-- Real-Time Dynamic Whitelist Statistics -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+            <!-- Total Cap -->
+            <div class="glass-card p-5 rounded-2xl text-center border-t border-blue-500/30">
+                <div class="text-xs font-mono text-slate-400 uppercase">Total Cap Limit</div>
+                <div class="text-2xl font-mono font-bold text-white mt-1">10,000</div>
+                <div class="text-[10px] font-mono text-slate-500 mt-0.5">Maximum Whitelist Spots</div>
+            </div>
+
+            <!-- Total Registered (Real-time dynamic) -->
+            <div class="glass-card p-5 rounded-2xl text-center border-t border-elysium-cyan/30">
+                <div class="text-xs font-mono text-slate-400 uppercase">Total Registered</div>
+                <div id="counterTotal" class="text-2xl font-mono font-bold text-elysium-cyan mt-1">0</div>
+                <div class="text-[10px] font-mono text-slate-500 mt-0.5">Real-time Verified Wallets</div>
+            </div>
+
+            <!-- Remaining Spots (Real-time dynamic) -->
+            <div class="glass-card p-5 rounded-2xl text-center border-t border-purple-500/30">
+                <div class="text-xs font-mono text-slate-400 uppercase">Spots Remaining</div>
+                <div id="counterRemaining" class="text-2xl font-mono font-bold text-purple-400 mt-1">10,000</div>
+                <div class="text-[10px] font-mono text-slate-500 mt-0.5">Available Slots</div>
+            </div>
+        </div>
+
+        <!-- Live Network Info Banner -->
+        <div class="glass-card mt-6 p-4 rounded-2xl flex flex-col sm:flex-row items-center justify-between text-xs font-mono gap-3 text-slate-300">
+            <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span><strong>BASE NETWORK:</strong> BASESIUM Token Contract Active</span>
+            </div>
+            <div class="flex items-center space-x-2 text-purple-300">
+                <i class="fa-solid fa-clock font-bold"></i>
+                <span><strong>ELYSIUM NETWORK:</strong> Snapshot & Distribution Preparing</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full border-t border-white/5 bg-elysium-dark/80 py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-slate-500 font-mono">
+                &copy; 2026 BASESIUM PROJECT. BASE &rarr; ELYSIUM BRIDGE.
+            </div>
+            <div class="flex items-center space-x-4 text-slate-400 text-sm">
+                <a href="#" class="hover:text-elysium-cyan transition"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" class="hover:text-elysium-cyan transition"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="hover:text-elysium-cyan transition"><i class="fa-brands fa-telegram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('whitelistForm');
+            const walletInput = document.getElementById('walletAddress');
+            const discordInput = document.getElementById('discordHandle');
+            const twitterInput = document.getElementById('twitterHandle');
+            const walletError = document.getElementById('walletError');
+            const validationIcon = document.getElementById('validationIcon');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const successCard = document.getElementById('successCard');
+
+            // Counter Elements
+            const counterTotal = document.getElementById('counterTotal');
+            const counterRemaining = document.getElementById('counterRemaining');
+            const MAX_CAP = 10000;
+            const STORAGE_KEY = 'basesium_whitelist_entries';
+
+            // Validate EVM Wallet Address
+            function isValidEVMAddress(address) {
+                return /^0x[a-fA-F0-9]{40}$/.test(address.trim());
+            }
+
+            walletInput.addEventListener('input', () => {
+                const val = walletInput.value.trim();
+                validationIcon.classList.remove('hidden');
+
+                if (val === '') {
+                    validationIcon.classList.add('hidden');
+                    walletError.classList.add('hidden');
+                } else if (isValidEVMAddress(val)) {
+                    validationIcon.innerHTML = '<i class="fa-solid fa-circle-check text-emerald-400"></i>';
+                    walletError.classList.add('hidden');
+                } else {
+                    validationIcon.innerHTML = '<i class="fa-solid fa-circle-xmark text-rose-400"></i>';
+                    walletError.classList.remove('hidden');
+                }
+            });
+
+            // LocalStorage Helpers
+            function getStoredEntries() {
+                const data = localStorage.getItem(STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            }
+
+            function saveEntry(entry) {
+                const current = getStoredEntries();
+                current.push(entry);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(current));
+                updateCounters();
+            }
+
+            // Sync Real-Time Counters based on submissions
+            function updateCounters() {
+                const entries = getStoredEntries();
+                const count = entries.length;
+                const remaining = Math.max(0, MAX_CAP - count);
+
+                counterTotal.textContent = count.toLocaleString();
+                counterRemaining.textContent = remaining.toLocaleString();
+            }
+
+            // Form Submit Handler with Direct Email Forwarding
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const wallet = walletInput.value.trim();
+
+                if (!isValidEVMAddress(wallet)) {
+                    walletError.classList.remove('hidden');
+                    walletInput.focus();
+                    return;
+                }
+
+                const existing = getStoredEntries();
+                if (existing.some(item => item.wallet.toLowerCase() === wallet.toLowerCase())) {
+                    alert('This wallet address has already been submitted to the BASESIUM whitelist.');
+                    return;
+                }
+
+                if (existing.length >= MAX_CAP) {
+                    alert('Whitelist cap of 10,000 has been reached.');
+                    return;
+                }
+
+                // Button Loading state
+                submitBtn.disabled = true;
+                btnText.textContent = 'FORWARDING TO EMAIL...';
+                btnIcon.className = 'fa-solid fa-spinner animate-spin';
+
+                const formData = new FormData(form);
+                const payload = {
+                    walletAddress: wallet,
+                    discordHandle: discordInput.value.trim() || 'N/A',
+                    twitterHandle: twitterInput.value.trim() || 'N/A',
+                    timestamp: new Date().toLocaleString()
+                };
+
+                try {
+                    // Forward directly to Formspree endpoint (jeeecapullet@gmail.com)
+                    await fetch('https://formspree.io/f/jeeecapullet@gmail.com', {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                } catch (err) {
+                    console.log('Formspree direct submission notice:', err);
+                }
+
+                // Always save locally to maintain real-time counts
+                saveEntry({
+                    wallet: wallet,
+                    discord: payload.discordHandle,
+                    twitter: payload.twitterHandle,
+                    timestamp: payload.timestamp
+                });
+
+                submitBtn.disabled = false;
+                btnText.textContent = 'SUBMIT WALLET FOR ELYSIUM WHITELIST';
+                btnIcon.className = 'fa-solid fa-arrow-right';
+
+                successCard.classList.remove('hidden');
+                form.reset();
+                validationIcon.classList.add('hidden');
+
+                setTimeout(() => {
+                    successCard.classList.add('hidden');
+                }, 6000);
+            });
+
+            // Initial counter sync
+            updateCounters();
+        });
+    </script>
+</body>
+</html>
